@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const widgets_1 = require("@phosphor/widgets");
 require("../style/index.css");
 const apputils_1 = require("@jupyterlab/apputils");
+const widgets_1 = require("@phosphor/widgets");
 /**
  * The class name added to a jobs widget.
  */
@@ -52,9 +52,7 @@ class JobsWidget extends widgets_1.Widget {
      * Construct a new xkcd widget.
      */
     constructor() {
-        super({
-            node: JobsWidget.createNode()
-        });
+        super({ node: JobsWidget.createNode() });
         this.addClass(JOBS_CLASS);
         this.populateHeaderNode(apputils_1.DOMUtils.findElement(this.node, HEADER_CLASS));
     }
@@ -115,8 +113,7 @@ class JobsWidget extends widgets_1.Widget {
     /**
      * Handle update requests for the widget.
      */
-    onUpdateRequest(msg) {
-    }
+    onUpdateRequest(msg) { }
 }
 exports.JobsWidget = JobsWidget;
 ;

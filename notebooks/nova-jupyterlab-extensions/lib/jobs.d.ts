@@ -1,6 +1,6 @@
-import { Widget } from '@phosphor/widgets';
 import '../style/index.css';
 import { Message } from '@phosphor/messaging';
+import { Widget } from '@phosphor/widgets';
 export declare class JobsWidget extends Widget {
     /**
      * Construct a new xkcd widget.

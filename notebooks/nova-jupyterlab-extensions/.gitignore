@@ -65,3 +65,6 @@ typings/
 
 # python virtual env
 venv/
+
+# Plugin binary
+lib/

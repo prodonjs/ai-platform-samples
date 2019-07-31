@@ -1,0 +1,97 @@
+openapi: '3.0.2'
+info:
+  title: JupyterLab Scheduled Notebooks Service
+  version: '1.0'
+servers:
+  - url: https://notebook.server/gcp/v1
+    description: Jupyter Notebook Server
+paths:
+  /notebook_jobs:
+    get:
+      summary: Retrieves a list of previously submitted Notebook Jobs
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotebookJobsListResponse"
+    post:
+      summary: Submits a new Notebook Job on GCP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NotebookJobRequest"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotebookJobResponse"
+        400:
+          description: Invalid Request
+  /notebook_jobs/{jobName}:
+    parameters:
+      - name: jobName
+        in: path
+        description: Name of the Job to delete
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Deletes a previously submitted Notebook Job
+      responses:
+        200:
+          description: OK
+components:
+  schemas:
+    NotebookJobRequest:
+      title: Request to submit a Notebook for execution on GCP
+      type: object
+      properties:
+        filename:
+          type: string
+        jobName:
+          type: string
+        schedule:
+          type: string
+        project:
+          type: string
+        region:
+          type: string
+        zone:
+          type: string
+        machineType:
+          type: string
+        gpuType:
+          type: string
+        gpuCount:
+          type: integer
+        gcsPath:
+          type: string
+        containerImage:
+          type: string
+      required:
+        - filename
+        - jobName
+        - region
+        - zone
+        - gcsPath
+        - containerImage
+    NotebookJobResponse:
+      title: Notebook Job
+      type: object
+      properties:
+        jobName:
+          type: string
+        schedule:
+          type: string
+        status:
+          type: string
+    NotebookJobsListResponse:
+      title: List of Notebook Jobs
+      type: array
+      items:
+        $ref: "#/components/schemas/NotebookJobResponse"

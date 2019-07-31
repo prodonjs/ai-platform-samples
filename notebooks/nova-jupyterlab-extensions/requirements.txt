@@ -1,1 +1,2 @@
-pyyaml
+google-auth >= 1.12.0
+requests>=2.22.0
